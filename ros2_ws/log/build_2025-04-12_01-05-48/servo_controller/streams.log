@@ -1,0 +1,24 @@
+[2.658s] Invoking command in '/home/arjun/ros2_ws/src/servo_controller': PYTHONPATH=/home/arjun/ros2_ws/build/servo_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arjun/ros2_ws/install/servo_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/servo_controller build --build-base /home/arjun/ros2_ws/build/servo_controller/build install --record /home/arjun/ros2_ws/build/servo_controller/install.log --single-version-externally-managed install_data
+[3.689s] running egg_info
+[3.692s] writing ../../build/servo_controller/servo_controller.egg-info/PKG-INFO
+[3.693s] writing dependency_links to ../../build/servo_controller/servo_controller.egg-info/dependency_links.txt
+[3.694s] writing entry points to ../../build/servo_controller/servo_controller.egg-info/entry_points.txt
+[3.695s] writing requirements to ../../build/servo_controller/servo_controller.egg-info/requires.txt
+[3.695s] writing top-level names to ../../build/servo_controller/servo_controller.egg-info/top_level.txt
+[3.706s] reading manifest file '../../build/servo_controller/servo_controller.egg-info/SOURCES.txt'
+[3.709s] writing manifest file '../../build/servo_controller/servo_controller.egg-info/SOURCES.txt'
+[3.710s] running build
+[3.711s] running build_py
+[3.711s] copying servo_controller/servo_node.py -> /home/arjun/ros2_ws/build/servo_controller/build/lib/servo_controller
+[3.713s] running install
+[3.714s] running install_lib
+[3.717s] copying /home/arjun/ros2_ws/build/servo_controller/build/lib/servo_controller/servo_node.py -> /home/arjun/ros2_ws/install/servo_controller/lib/python3.10/site-packages/servo_controller
+[3.720s] byte-compiling /home/arjun/ros2_ws/install/servo_controller/lib/python3.10/site-packages/servo_controller/servo_node.py to servo_node.cpython-310.pyc
+[3.724s] running install_data
+[3.725s] running install_egg_info
+[3.731s] removing '/home/arjun/ros2_ws/install/servo_controller/lib/python3.10/site-packages/servo_controller-0.0.0-py3.10.egg-info' (and everything under it)
+[3.733s] Copying ../../build/servo_controller/servo_controller.egg-info to /home/arjun/ros2_ws/install/servo_controller/lib/python3.10/site-packages/servo_controller-0.0.0-py3.10.egg-info
+[3.739s] running install_scripts
+[3.826s] Installing servo_node script to /home/arjun/ros2_ws/install/servo_controller/lib/servo_controller
+[3.828s] writing list of installed files to '/home/arjun/ros2_ws/build/servo_controller/install.log'
+[3.965s] Invoked command in '/home/arjun/ros2_ws/src/servo_controller' returned '0': PYTHONPATH=/home/arjun/ros2_ws/build/servo_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arjun/ros2_ws/install/servo_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/servo_controller build --build-base /home/arjun/ros2_ws/build/servo_controller/build install --record /home/arjun/ros2_ws/build/servo_controller/install.log --single-version-externally-managed install_data
