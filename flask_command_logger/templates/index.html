@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Servo Command Sender</title>
+</head>
+<body>
+    <h2>Send Command to Flexible Arm</h2>
+    <form method="POST">
+        <label for="alpha">Alpha (°):</label>
+        <input type="number" name="alpha" required>
+        <br><br>
+        <label for="theta">Theta (°):</label>
+        <input type="number" name="theta" required>
+        <br><br>
+        <button type="submit">Send Command</button>
+    </form>
+
+    {% if message %}
+        <p><strong>{{ message }}</strong></p>
+    {% endif %}
+</body>
+</html>
