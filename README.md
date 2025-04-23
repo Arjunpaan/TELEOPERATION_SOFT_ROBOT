@@ -1,19 +1,24 @@
 # Flexible Tendon-Driven Continuum Manipulator for Teleoperation using ROS
 
-# Teleoperation Soft Robot: Flexible Tendon-Driven Continuum Manipulator
+## Project Overview
+This project presents a teleoperated soft robotic arm miming biological manipulators like tentacles and trunks using a tendon-driven flexible continuum manipulator. Built on a Raspberry Pi 4 and controlled via a Wi-Fi-enabled web interface, this system leverages ROS 2 Humble, inverse kinematics, and PWM servo control to achieve 3D directional bending.
 
-## 🔍 Project Overview
-This project presents a teleoperated soft robotic arm that mimics biological manipulators like tentacles and trunks using a tendon-driven flexible continuum manipulator. Built on a Raspberry Pi 4 and controlled via a Wi-Fi-enabled web interface, this system leverages ROS 2 Humble, inverse kinematics, and PWM servo control to achieve 3D directional bending.
+##So below the ros 2 node complete code is available in the ros2 workbench here basic overview 
+flask web code basic overview setup overview how to control everything and installation guide, and mathematics behind the algorithm is available on the below research paper by Firdaus Bhaiya
+
+Md Modassir Firdaus and Madhu Vadali. 2023. Virtual Tendon-Based Inverse Kinematics of Tendon-Driven Flexible Continuum Manipulators. In
+Advances In Robotics - 6th International Conference of The Robotics Society
+(AIR 2023), July 05–08, 2023, Ropar, India. ACM, New York, NY, USA, 5 pages.
+https://doi.org/10.1145/3610419.3610491  
 
 ---
 
-## 📌 Step-by-Step Implementation
+##  Step-by-Step Implementation
 
-### 1. 💻 **Processor Selection: Raspberry Pi 4 (RPI4)**
+### 1.  **Processor Selection: Raspberry Pi 4 (RPI4)**
 - **Reason**: ROS 2 Humble requires Ubuntu 22.04 LTS, which is compatible with RPi 4.
-- **Benefits**: Compact, GPIO-rich, affordable, supports real-time robotic control.
 
-### 2. 🖥️ **Installing Ubuntu 22.04 LTS on Raspberry Pi 4**
+### 2.  **Installing Ubuntu 22.04 LTS on Raspberry Pi 4**
 - **Tool Used**: Raspberry Pi Imager or balenaEtcher
 - **Steps**:
   - Download the 64-bit Ubuntu 22.04 LTS image.
@@ -25,9 +30,9 @@ This project presents a teleoperated soft robotic arm that mimics biological man
   ```
   > Ensures the system is updated to the latest security patches and package versions.
 
-### 3. ⚙️ **Installing ROS 2 Humble on RPi 4**
+### 3.  **Installing ROS 2 Humble on RPi 4**
 - Followed the official installation guide for ROS 2 Humble on Ubuntu 22.04.
-- **Command-by-command setup**:
+
 
   **Step 1: Set Locale**
   ```bash
@@ -69,7 +74,7 @@ This project presents a teleoperated soft robotic arm that mimics biological man
 
 ---
 
-## 🧰 Installing Required Libraries
+##  Installing Required Libraries
 
 ### Python Libraries
 ```bash
@@ -85,8 +90,60 @@ sudo systemctl start pigpiod
 > `pigpiod` daemon must be running to send PWM signals to servos.
 
 ---
+Physical Setup & Mechanical Design
+3D Printed Pulleys:
 
-## 🔄 ROS 2 Humble Node for Servo Control
+Designed in Fusion 360 with a 20 mm radius
+
+Mounted on MG995 servo horns using M3 screws
+
+Servo Mounting Box:
+
+Laser cut acrylic or 3D printed enclosure for servo mounting
+
+Secured with standoffs and brackets
+
+Nylon Tube Backbone:
+
+Length: ~175 mm, Diameter: 8 mm
+
+Flexible yet durable to allow bending without permanent deformation
+
+Aluminum or PLA Disks:
+
+Outer diameter: ~10 mm
+
+Holes drilled at 120° apart for tendon routing
+
+Placed at regular intervals (every 15 mm)
+
+Tendon Routing:
+
+Tendons inserted through front disk and passed through holes in disks
+
+Anchored to pulleys which rotate and change tendon length
+
+Camera Mounting:
+
+Small USB/PI camera placed inside or under the belly of the manipulator
+
+Connected to Pi for real-time observation
+
+Power Supply:
+
+12V 5A SMPS connected to buck converter
+
+Voltage regulated to 6V and supplied to servo rail
+
+Raspberry Pi powered independently or via USB-C
+
+Mechanical Support Frame:
+
+Base made from MDF or acrylic
+
+Holds the servo box and manipulator securely
+
+## ROS 2 Humble Node for Servo Control
 
 ### Package Structure
 - `my_flexible_arm/`
@@ -146,21 +203,153 @@ ros2 run my_flexible_arm servo_controller
 ```
 
 ---
+Flask Web Interface for Teleoperation
+python
+Copy
+Edit
+from flask import Flask, request
+import rclpy
+from std_msgs.msg import Float32MultiArray
 
-## 🌐 Web UI to ROS 2 Integration
+app = Flask(__name__)
+rclpy.init()
+node = rclpy.create_node('web_interface')
+publisher = node.create_publisher(Float32MultiArray, 'flexible_arm_input', 10)
+
+@app.route('/', methods=['POST'])
+def control():
+    alpha = float(request.form['alpha'])
+    theta = float(request.form['theta'])
+    msg = Float32MultiArray()
+    msg.data = [alpha, theta]
+    publisher.publish(msg)
+    return 'Command sent.'
+
+app.run(host='0.0.0.0', port=5000)
+📐 Inverse Kinematics — Deep Dive
+Virtual Tendon Model
+𝛿
+𝐿
+𝑣
+=
+𝑟
+𝑑
+⋅
+𝜃
+δL 
+v
+​
+ =r 
+d
+​
+ ⋅θ
+
+Mapping to tendons:
+
+𝛿
+𝐿
+𝑎
+=
+cos
+⁡
+(
+𝛼
+)
+⋅
+𝛿
+𝐿
+𝑣
+𝛿
+𝐿
+𝑏
+=
+cos
+⁡
+(
+2
+𝜋
+3
+−
+𝛼
+)
+⋅
+𝛿
+𝐿
+𝑣
+𝛿
+𝐿
+𝑐
+=
+cos
+⁡
+(
+4
+𝜋
+3
+−
+𝛼
+)
+⋅
+𝛿
+𝐿
+𝑣
+δL 
+a
+​
+ =cos(α)⋅δL 
+v
+​
+ 
+δL 
+b
+​
+ =cos( 
+3
+2π
+​
+ −α)⋅δL 
+v
+​
+ 
+δL 
+c
+​
+ =cos( 
+3
+4π
+​
+ −α)⋅δL 
+v
+​
+ 
+Conversion to PWM:
+
+Servo Angle
+=
+𝛿
+𝐿
+𝑟
+𝑝
+Servo Angle= 
+r 
+p
+​
+ 
+δL
+​
+
+
+##  Web UI to ROS 2 Integration
 - User inputs α (plane angle) and θ (bending angle)
 - Flask sends data to ROS 2 node
 - ROS 2 node computes and commands servos via GPIO
 
 ---
 
-## 📦 Final Summary
+## Final Summary
 - ROS 2 Humble is the **core framework** used for real-time teleoperation
 - Python + Flask used for web-based user input
 - `pigpio` handles PWM signals precisely to each servo
 - Project integrates embedded systems, soft robotics, web technologies, and mathematical modeling for a real-world application
 
 ---
-
-If you find this project helpful, feel free to ⭐ this repo!
-
