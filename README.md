@@ -3,13 +3,13 @@
 ## Project Overview
 This project presents a teleoperated soft robotic arm miming biological manipulators like tentacles and trunks using a tendon-driven flexible continuum manipulator. Built on a Raspberry Pi 4 and controlled via a Wi-Fi-enabled web interface, this system leverages ROS 2 Humble, inverse kinematics, and PWM servo control to achieve 3D directional bending.
 
-##So below the ros 2 node complete code is available in the ros2 workbench here basic overview 
-flask web code basic overview setup overview how to control everything and installation guide, and mathematics behind the algorithm is available on the below research paper by Firdaus Bhaiya
+## So below the ros 2 node complete code is available in the ros2 workbench here basic overview flask web code basic overview setup overview how to control everything and installation guide, and mathematics behind the algorithm is available on the below research paper by Firdaus Bhaiya
 
-Md Modassir Firdaus and Madhu Vadali. 2023. Virtual Tendon-Based Inverse Kinematics of Tendon-Driven Flexible Continuum Manipulators. In
-Advances In Robotics - 6th International Conference of The Robotics Society
-(AIR 2023), July 05–08, 2023, Ropar, India. ACM, New York, NY, USA, 5 pages.
-https://doi.org/10.1145/3610419.3610491  
+## Md Modassir Firdaus and Madhu Vadali. 2023. Virtual Tendon-Based Inverse Kinematics of Tendon-Driven Flexible Continuum Manipulators. In
+## Advances In Robotics - 6th International Conference of The Robotics Society
+## (AIR 2023), July 05–08, 2023, Ropar, India. ACM, New York, NY, USA, 5 pages.
+## https://doi.org/10.1145/3610419.3610491  
+
 
 ---
 
