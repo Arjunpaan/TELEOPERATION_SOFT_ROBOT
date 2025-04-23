@@ -204,9 +204,7 @@ ros2 run my_flexible_arm servo_controller
 
 ---
 Flask Web Interface for Teleoperation
-python
-Copy
-Edit
+
 from flask import Flask, request
 import rclpy
 from std_msgs.msg import Float32MultiArray
@@ -226,7 +224,10 @@ def control():
     return 'Command sent.'
 
 app.run(host='0.0.0.0', port=5000)
-📐 Inverse Kinematics — Deep Dive
+
+
+---
+##📐 Inverse Kinematics — Deep Dive
 Virtual Tendon Model
 𝛿
 𝐿
